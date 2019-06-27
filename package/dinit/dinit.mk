@@ -32,6 +32,7 @@ endef
 define DINIT_INSTALL_TARGET_CMDS
 	$(TARGET_MAKE_ENV) $(MAKE) -C $(@D)/src install DESTDIR=$(TARGET_DIR)
         cd $(TARGET_DIR)/sbin; ln -fs dinit init
+	cp -r $(@D)/doc/linux/services $(TARGET_DIR)/etc/dinit.d
 endef
 
 $(eval $(generic-package))
