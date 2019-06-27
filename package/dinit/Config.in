@@ -1,0 +1,7 @@
+config BR2_PACKAGE_DINIT
+	bool "Dinit"
+	help
+	  "Dinit" is a service supervisor with dependency support which can also act as the system "init" program. 
+	  It was created with the intention of providing a portable init system that could serve as a lighter-weight alternative to the Linux-only Systemd.
+
+
