@@ -94,6 +94,12 @@ config BR2_INIT_BUSYBOX
 	select BR2_PACKAGE_INITSCRIPTS
 	select BR2_PACKAGE_SKELETON_INIT_SYSV if BR2_ROOTFS_SKELETON_DEFAULT
 
+config BR2_INIT_DINIT
+        bool "Dinit"
+        depends on BR2_USE_MMU
+        select BR2_PACKAGE_DINIT
+        select BR2_PACKAGE_SKELETON_INIT_SYSV if BR2_ROOTFS_SKELETON_DEFAULT
+
 config BR2_INIT_SYSV
 	bool "systemV"
 	depends on BR2_USE_MMU # sysvinit
@@ -153,6 +159,13 @@ config BR2_INIT_NONE
 source "$BR2_BASE_DIR/.br2-external.in.init"
 
 endchoice
+
+config BR2_INIT_DINIT_CONFIG
+	depends on BR2_INIT_DINIT
+	string "Dinit scripts path"
+	help
+          Dinit.d folder containing services scripts.
+          Those will be placed in /etc/dinit.d
 
 choice
 	prompt "/dev management" if !BR2_INIT_SYSTEMD
