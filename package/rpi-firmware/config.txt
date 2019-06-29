@@ -4,7 +4,8 @@
 # See http://buildroot.org/manual.html#rootfs-custom
 # and http://elinux.org/RPiconfig for a description of config.txt syntax
 
-kernel=zImage
+kernel=Image
+device_tree=bcm2710-rpi-cm3.dtb
 
 # To use an external initramfs file
 #initramfs rootfs.cpio.gz
@@ -18,3 +19,15 @@ disable_overscan=1
 gpu_mem_256=100
 gpu_mem_512=100
 gpu_mem_1024=100
+
+# enable 64bits support
+arm_64bit=1
+
+# enable rpi3 ttyS0 serial console
+enable_uart=1
+
+# Disable all sorts of probing
+hdmi_ignore_edid=0xa5000080
+force_eeprom_read=0
+ignore_lcd=1
+ignore_hdmi_edid=1
