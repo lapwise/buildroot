@@ -30,4 +30,4 @@ enable_uart=1
 hdmi_ignore_edid=0xa5000080
 force_eeprom_read=0
 ignore_lcd=1
-ignore_hdmi_edid=1
+#ignore_hdmi_edid=1
