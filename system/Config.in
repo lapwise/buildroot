@@ -146,6 +146,11 @@ config BR2_INIT_NONE
 
 endchoice
 
+config BR2_INIT_DINIT_CONFIG
+	depends on BR2_INIT_DINIT
+	string "Dinit config files"
+	comment "dinit.d folder containing configuration files"
+
 choice
 	prompt "/dev management" if !BR2_INIT_SYSTEMD
 	default BR2_ROOTFS_DEVICE_CREATION_DYNAMIC_DEVTMPFS

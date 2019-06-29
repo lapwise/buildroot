@@ -5,13 +5,21 @@
 ################################################################################
 
 DINIT_VERSION = 0.5.1
-DINIT_SOURCE = v$(DINIT_VERSION).tar.gz
+#DINIT_SOURCE = v$(DINIT_VERSION).tar.gz
+DINIT_SOURCE = ac1846879db99dd2ca44560a44cd83bdc0aafa1d.tar.gz
 DINIT_SITE = https://github.com/davmac314/dinit/archive
 DINIT_LICENSE = Apache-2.0
 DINIT_LICENSE_FILES = LICENSE
 
 DINIT_CFLAGS = $(TARGET_CFLAGS) -std=c++11 -fno-rtti -fno-plt -flto
 DINIT_LDFLAGS = $(TARGET_LDFLAGS) -flto
+
+ifdef BR2_INIT_DINIT_CONFIG
+	CONFIG_INSTALL=cp -vr $(BR2_INIT_DINIT_CONFIG)/* $(TARGET_DIR)/etc/dinit.d/
+else
+	CONFIG_INSTALL=""
+endif
+
 
 define DINIT_BUILD_CMDS
 	@echo "SBINDIR=/sbin" > $(@D)/mconfig
@@ -32,7 +40,10 @@ endef
 define DINIT_INSTALL_TARGET_CMDS
 	$(TARGET_MAKE_ENV) $(MAKE) -C $(@D)/src install DESTDIR=$(TARGET_DIR)
         cd $(TARGET_DIR)/sbin; ln -fs dinit init
-	cp -r $(@D)/doc/linux/services $(TARGET_DIR)/etc/dinit.d
+	rm -rf $(TARGET_DIR)/etc/dinit.d/*
+	mkdir -p $(TARGET_DIR)/etc/dinit.d
+	$(CONFIG_INSTALL)
+
 endef
 
 $(eval $(generic-package))
