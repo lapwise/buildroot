@@ -4,9 +4,8 @@
 #
 ################################################################################
 
-DINIT_VERSION = 0.5.1
-#DINIT_SOURCE = v$(DINIT_VERSION).tar.gz
-DINIT_SOURCE = ac1846879db99dd2ca44560a44cd83bdc0aafa1d.tar.gz
+DINIT_VERSION = 0.5.2
+DINIT_SOURCE = v$(DINIT_VERSION).tar.gz
 DINIT_SITE = https://github.com/davmac314/dinit/archive
 DINIT_LICENSE = Apache-2.0
 DINIT_LICENSE_FILES = LICENSE
@@ -32,7 +31,7 @@ define DINIT_BUILD_CMDS
 	@echo "CXXOPTS=$(DINIT_CFLAGS)" >> $(@D)/mconfig
 	@echo "LD=$(TARGET_LD)" >> $(@D)/mconfig
 	@echo "LDFLAGS=$(DINIT_LDFLAGS)" >> $(@D)/mconfig
-	@echo "STRIP=$(TARGET_STRIP)" >> $(@D)/mconfig
+	@echo "STRIPOPTS=-s --with-strip=$(TARGET_STRIP)" >> $(@D)/mconfig
 	$(TARGET_MAKE_ENV) $(MAKE) -j1 -C $(@D)/src includes/mconfig.h
 	$(TARGET_MAKE_ENV) $(MAKE) -C $(@D)/src all
 endef
