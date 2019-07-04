@@ -31,7 +31,7 @@ define DINIT_BUILD_CMDS
 	@echo "CXXOPTS=$(DINIT_CFLAGS)" >> $(@D)/mconfig
 	@echo "LD=$(TARGET_LD)" >> $(@D)/mconfig
 	@echo "LDFLAGS=$(DINIT_LDFLAGS)" >> $(@D)/mconfig
-	@echo "STRIPOPTS=-s --with-strip=$(TARGET_STRIP)" >> $(@D)/mconfig
+	@echo "STRIPOPTS=-s --strip-program=$(TARGET_STRIP)" >> $(@D)/mconfig
 	$(TARGET_MAKE_ENV) $(MAKE) -j1 -C $(@D)/src includes/mconfig.h
 	$(TARGET_MAKE_ENV) $(MAKE) -C $(@D)/src all
 endef
