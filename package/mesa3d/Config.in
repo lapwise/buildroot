@@ -190,6 +190,18 @@ config BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_VC4
 	  Driver for Broadcom VC4 (rpi2/3) GPUs.
 	  It requires a vanilla 4.5+ kernel with drm vc4 (open) support.
 
+config BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_LIMA
+	bool "Gallium lima driver"
+	depends on BR2_ARM_CPU_HAS_NEON || BR2_aarch64
+	select BR2_PACKAGE_MESA3D_GALLIUM_DRIVER
+	select BR2_PACKAGE_MESA3D_GALLIUM_KMSRO
+	select BR2_PACKAGE_LIBDRM_LIMA
+	select BR2_PACKAGE_MESA3D_NEEDS_XA
+	select BR2_PACKAGE_MESA3D_OPENGL_EGL
+        select BR2_PACKAGE_MESA3D_LLVM
+	help
+	  Driver for Arm Mali 400/450 GPUs.
+
 config BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_VIRGL
 	bool "Gallium virgl driver"
 	select BR2_PACKAGE_MESA3D_GALLIUM_DRIVER

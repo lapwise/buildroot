@@ -98,6 +98,12 @@ config BR2_PACKAGE_LIBDRM_VC4
 	help
 	  Install vc4 (Raspberry Pi) driver.
 
+config BR2_PACKAGE_LIBDRM_LIMA
+	bool "lima"
+	depends on BR2_aarch64 || BR2_arm
+	help
+	  Install lima (Mali 400/450) driver.
+
 config BR2_PACKAGE_LIBDRM_INSTALL_TESTS
 	bool "Install test programs"
 	help
