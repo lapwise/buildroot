@@ -1,7 +1,7 @@
 config BR2_TARGET_ARM_TRUSTED_FIRMWARE
 	bool "ARM Trusted Firmware (ATF)"
 	depends on (BR2_ARM_CPU_ARMV8A || BR2_ARM_CPU_ARMV7A) && \
-		   (BR2_TARGET_UBOOT || BR2_TARGET_EDK2)
+		   (BR2_TARGET_UBOOT || BR2_TARGET_EDK2 || BR2_TARGET_BAREBOX)
 	help
 	  Enable this option if you want to build the ATF for your ARM
 	  based embedded device.
